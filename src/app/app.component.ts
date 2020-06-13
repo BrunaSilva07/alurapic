@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PhotoService } from './photos/photo/photo.service';
 
 
@@ -13,10 +13,13 @@ export class AppComponent {
 
   photos: Object[] = [];
 
-  constructor(photoService: PhotoService) {
-      
-    photoService
+  constructor(private service: PhotoService) {}
+  
+  ngOnInit() {
+    
+    this.service
       .listFromUser('flavio')
       .subscribe(photos => this.photos = photos);
   }
+
 }
